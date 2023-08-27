@@ -1,0 +1,23 @@
+
+{% block content %}
+<h2 style="text-align: center; margin-top: 50px;">Log In</h2>
+<form method="post" style="text-align: center; margin-top: 50px;">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <a href="{% url 'password_reset' %}">forgot your password?</a>
+  <button type="submit">Log In</button>
+  <a href="{% url 'signup' %}">Sign up</a>
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="form-check mb-0">
+      <a href="{% url 'password_reset' %}" class="text-body">forgot your password?</a>
+    </div>
+  </div>
+  <div class="text-center text-lg-start mt-4 pt-2">
+    <p class="small fw-bold mt-2 pt-1 mb-0">
+      Don't have an account? 
+      <a href="{% url 'signup' %}" class="link-danger">Register</a></p>
+  </div>
+</form>
+{% endblock %}
+
+

@@ -1,0 +1,34 @@
+<!-- {% extends "product/product.html" %} -->
+
+{% block content %}
+<style>
+   .Cart-Container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    height: auto;
+    width: auto;
+    border: 2px solid darkcyan;
+    border-radius: 20px;
+    box-shadow: 10px 25px 40px #1687d933;
+
+    }
+
+.Cart-Container ul {
+    text-align: center;
+    }
+</style>
+
+<section class="Cart-Container">
+    <h1>Your Cart LIST</h1>
+    
+    <ul>
+        
+        {% for cart_item in cart_items %}
+            <li>{{ cart_item.product.name }} : {{ cart_item.quantity }}pcs</li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

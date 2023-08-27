@@ -1,0 +1,95 @@
+
+{% block content %}
+<style>
+  section 
+  {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  overflow: hidden;
+  }
+
+ 
+  body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: whitesmoke;
+  border-radius: 5%;
+  }
+  
+  input 
+  {
+  position: relative;
+  width: 100%;
+  background: black;
+  font-size: 4em;
+  border: none;
+  outline: none;
+  padding: 25px 10px 7.5px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1em;
+  }
+
+  
+  section form
+  {
+  background: whitesmoke;
+  color: #141414;
+  transition: 0s;
+  box-shadow: 0 15px 35px rgba(0,0,0,9);
+  padding: 50px;
+  }
+
+  h2 
+  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 2em;
+  color: rgb(12, 19, 12);
+  text-transform: uppercase;
+  }
+
+  button{
+    width: 100%;
+    border-radius: 25%;
+    padding: 10px;
+    font-size: 4em;
+    color: white;
+    background-color: rgb(16, 17, 16);
+  }
+</style>
+<section>
+
+<form method="post" style="text-align: center; margin-top: 50px;">
+  <h2 style="text-align: center; margin-top: 50px;">Log In</h2>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <a href="{% url 'password_reset' %}">forgot your password?</a>
+  <button type="submit">Log In</button>
+  <a href="{% url 'signup' %}">Sign up</a>
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="form-check mb-0">
+      <a href="{% url 'password_reset' %}" class="text-body">forgot your password?</a>
+    </div>
+  </div>
+  <div class="text-center text-lg-start mt-4 pt-2">
+    <p class="small fw-bold mt-2 pt-1 mb-0">
+      Don't have an account? 
+      <a href="{% url 'signup' %}" class="link-danger">Register</a></p>
+  </div>
+</form>
+</section>
+{% endblock %}
+
+

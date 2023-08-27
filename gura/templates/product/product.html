@@ -1,0 +1,154 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+
+  <title>
+    Hard & Soft
+  </title>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+
+</head>
+
+<body>
+
+  <!-- using hover on user profile to give me logout option -->
+  <style>
+    /* Style the navigation item */
+    .nav-item {
+      list-style: none;
+      padding: 10px;
+      position: relative; /* Required for absolute positioning */
+      text-align: right;
+    }
+  
+    /* Style the dropdown menu */
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0px);
+      right: 0;
+      background-color: #333030;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      
+    }
+  
+    /* Show the dropdown menu when the parent .nav-item is hovered */
+    .nav-item:hover .dropdown-menu {
+      display: block;
+    }
+    .bottom-section {
+    position: relative;
+    padding: 10px;
+    bottom: 20;
+    left: 12%;
+    width: 70%;
+    background-color: burlywood;
+    color : whitesmoke
+    /* Additional styling if needed */
+    }
+
+  </style> 
+  <!-- end of userprofile hovering -->
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="{% url "product-list" %}">
+          <span>
+            GURA
+          </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=""></span>
+        </button>
+        <div class="collapse navbar-collapse innerpage_navbar" id="navbarSupportedContent">
+          <ul class="navbar-nav ">
+            {% if user.is_authenticated %}
+              
+                <li class="nav-item"><a href="{% url 'cart-list' %}">Cart</a></li>
+                <li class="nav-item"><a href="{% url 'order-list' %}">View-Orders</a></li>       
+                <li class="nav-item"><a href="{% url 'create-order' %}">Make-Order</a></li>
+                <li class="nav-item"><a href="{% url 'schema-redoc' %}">ViewAPIs</a></li>          
+              <!-- insert profile view api, cart api, order api-->
+                <li class="nav-item">  
+                    <p > My Profile </p>
+                      <ul class="dropdown-menu">
+                      <li style="color: white;">{{user.username }} </li>
+                  
+                      <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    </ul>
+                  </li>
+            {% else %}
+                <p>You are not logged in</p>
+                <a href="{% url 'login' %}">Log In</a>
+              {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- end header section -->
+  </div>
+  <section class="shop_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        
+      </div>
+      {% if user.is_authenticated %}
+        {% block content %}
+
+        {% endblock %}
+        <div class="row">
+          {% for item in items %}
+              <div class="col-sm-6 col-md-4 col-lg-3">
+                  <div class="box">
+                      <div class="img-box">
+                          <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                      </div>
+                      <div class="detail-box">
+                          <h6>{{ item.name }}</h6>
+                          <h6>
+                              Price:
+                              <span>{{ item.price }}</span>
+                          </h6>
+                      </div>
+                      <span>
+                        <a style="margin-right: 10%;border: 2px; border-radius: 5%;padding: 10px; background-color:greenyellow" href="{% url 'add-to-cart' %}">Add To Cart</a>
+                        
+                      </span>
+                  </div>
+              </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <!-- from here tempting to retrieve data from database -->
+      
+  </section>
+  <section class="info_section  layout_padding2-top bottom-section">
+    <div class="social_container">
+        <h3 style="text-align: center;">Unlock a world of possibilities with our product</h3>
+    </div>
+  </section>
+</body>
+
+</html>
