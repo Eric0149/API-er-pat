@@ -34,7 +34,7 @@
   <style>
     /* Style the navigation item */
     .nav-item {
-      list-style: none;
+      list-style: lower-roman;
       padding: 10px;
       position: relative; /* Required for absolute positioning */
       text-align: right;
@@ -89,7 +89,7 @@
                 <li class="nav-item"><a href="{% url 'cart-list' %}">Cart</a></li>
                 <li class="nav-item"><a href="{% url 'order-list' %}">View-Orders</a></li>       
                 <li class="nav-item"><a href="{% url 'create-order' %}">Make-Order</a></li>
-                <li class="nav-item"><a href="{% url 'schema-redoc' %}">ViewAPIs</a></li>          
+                <li class="nav-item"><a href="{% url 'schema-swagger-ui' %}">ViewAPIs</a></li>          
               <!-- insert profile view api, cart api, order api-->
                 <li class="nav-item">  
                     <p > My Profile </p>

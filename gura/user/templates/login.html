@@ -61,26 +61,26 @@
   }
 
   button{
-    width: 100%;
-    border-radius: 25%;
+    
     padding: 10px;
-    font-size: 4em;
+    font-size: 2em;
     color: white;
-    background-color: rgb(16, 17, 16);
+    background-color: whitesmoke;
+    border: none;
   }
 </style>
 <section>
 
 <form method="post" style="text-align: center; margin-top: 50px;">
-  <h2 style="text-align: center; margin-top: 50px;">Log In</h2>
+  <h2 style="text-align: center; margin-top: 50px;">Log In</h2><br>
   {% csrf_token %}
   {{ form.as_p }}
-  <a href="{% url 'password_reset' %}">forgot your password?</a>
-  <button type="submit">Log In</button>
-  <a href="{% url 'signup' %}">Sign up</a>
+  <a href="{% url 'password_reset' %}">forgot your password?</a><br>
+  <button type="submit">Log In</button><br>
+  <a href="{% url 'signup' %}">Sign up</a><br>
   <div class="d-flex justify-content-between align-items-center">
     <div class="form-check mb-0">
-      <a href="{% url 'password_reset' %}" class="text-body">forgot your password?</a>
+      <a href="{% url 'password_reset' %}" class="text-body">forgot your password?</a><br>
     </div>
   </div>
   <div class="text-center text-lg-start mt-4 pt-2">
